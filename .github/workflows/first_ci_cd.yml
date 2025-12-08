@@ -78,8 +78,8 @@ jobs:
 
     - name: Install Ansible
       run: |
-        apt-get update
-        apt-get install -y ansible
+        sudo zypper --non-interactive ref
+        sudo zypper --non-interactive install -y ansible
 
     - name: Run Ansible Playbook
       run: ansible-playbook -i inventory.ini deploy_rpm_opensuse.yml
