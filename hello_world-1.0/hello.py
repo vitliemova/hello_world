@@ -1,2 +1,2 @@
 #!/usr/bin/env python3
-print("Hello from RPM packaged Python app!")
+print("Hello from RPM packaged Python app_new!")
