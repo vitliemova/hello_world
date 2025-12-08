@@ -65,5 +65,5 @@ jobs:
         username: desradeva
         password: ${{ secrets.GITHUB_TOKEN }}
     - run: |
-        docker tag hello_world:latest ghcr.io/vitliemova/hello_world:latest
-        docker push ghcr.io/vitliemova/hello_world:latest
+        docker tag hello_world:latest ghcr.io/desradeva/hello_world:latest
+        docker push ghcr.io/desradeva/hello_world:latest
