@@ -36,14 +36,14 @@ jobs:
 
     - name: Copy sources
       run: |
-        tar czvf ~/rpmbuild/SOURCES/hello_world-1.0.tar.gz hello_world-1.0/
+        tar czvf ~/rpmbuild/SOURCES/hello_world-2.0.tar.gz hello_world-2.0/
         cp hello_world.spec ~/rpmbuild/SPECS/
 
     - name: Build RPM
       run: rpmbuild -bb ~/rpmbuild/SPECS/hello_world.spec
 
     - name: Verify RPM
-      run: rpm -qp ~/rpmbuild/RPMS/noarch/hello_world-1.0-1.noarch.rpm --info
+      run: rpm -qp ~/rpmbuild/RPMS/noarch/hello_world-2.0-1.noarch.rpm --info
 
   docker-build:
     runs-on: ubuntu-latest
