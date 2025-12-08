@@ -62,8 +62,8 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: ghcr.io
-        username: desradeva
+        username: vitliemova
         password: ${{ secrets.GITHUB_TOKEN }}
     - run: |
-        docker tag hello_world:latest ghcr.io/desradeva/hello_world:latest
-        docker push ghcr.io/desradeva/hello_world:latest
+        docker tag hello_world:latest ghcr.io/vitliemova/hello_world:latest
+        docker push ghcr.io/vitliemova/hello_world:latest
