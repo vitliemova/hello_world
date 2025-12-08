@@ -10,4 +10,9 @@
       command: zypper --non-interactive install /tmp/hello_world.rpm
 
     - name: Run hello_world command
-      command: hello_world
+      command: /usr/local/bin/hello_world
+      register: hello_output
+
+    - name: Debug full result
+      debug:
+        var: hello_output
