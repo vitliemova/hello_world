@@ -67,3 +67,22 @@ jobs:
     - run: |
         docker tag hello_world:latest ghcr.io/vitliemova/hello_world:latest
         docker push ghcr.io/vitliemova/hello_world:latest
+
+  
+  ansible-deploy-rpm:
+    runs-on: self-hosted   
+    needs: rpm-build
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Ansible
+      run: |
+        sudo zypper --non-interactive ref
+        sudo zypper --non-interactive install -y ansible
+
+    - name: Run Ansible Playbook
+      run: ansible-playbook -i inventory.ini deploy_rpm_opensuse.yml
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: False
+

@@ -1,0 +1,13 @@
+- hosts: rpmservers
+  become: true
+  tasks:
+    - name: Copy RPM package
+      copy:
+        src: ~/rpmbuild/RPMS/noarch/hello_world-1.0-1.noarch.rpm
+        dest: /tmp/hello_world.rpm
+
+    - name: Install hello_world RPM with zypper
+      command: zypper --non-interactive install /tmp/hello_world.rpm
+
+    - name: Run hello_world command
+      command: hello_world
