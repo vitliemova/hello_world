@@ -15,7 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: opensuse/leap:15.6   # Може да смениш към tumbleweed
+
+
     steps:
+    - name: Install prerequisites
+      run: |
+        zypper --non-interactive ref
+        zypper --non-interactive install tar git
+
     - name: Checkout code
       uses: actions/checkout@v3
 
