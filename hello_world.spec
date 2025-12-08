@@ -14,7 +14,7 @@ Requires:       python3
 A simple Python Hello World program packaged as RPM for SUSE.
 
 %prep
-%setup -q
+%setup -q -n
 
 %build
 
