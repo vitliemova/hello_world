@@ -5,7 +5,7 @@ Summary:        Simple Python Hello World program
 
 License:        MIT
 URL:            https://github.com/vitliemova/hello_world
-Source0:        hello_world-1.0.tar.gz
+Source0:        hello_world-2.0.tar.gz
 
 BuildArch:      noarch
 Requires:       python3
@@ -26,5 +26,5 @@ install -m 0755 hello.py %{buildroot}/usr/local/bin/hello_world
 /usr/local/bin/hello_world
 
 %changelog
-* Mon Dec 08 2025 Desislava <desi@example.com> - 1.0-1
+* Mon Dec 08 2025 Desislava <desi@example.com> - 2.0-1
 - Initial RPM build
