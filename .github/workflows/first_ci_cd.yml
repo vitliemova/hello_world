@@ -1,0 +1,57 @@
+name: CI/CD Pipeline (openSUSE)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  rpm-build:
+    runs-on: ubuntu-latest
+    container:
+      image: opensuse/leap:15.6   # Може да смениш към tumbleweed
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install build tools
+      run: |
+        zypper --non-interactive ref
+        zypper --non-interactive install rpm-build rpmdevtools git python3
+
+    - name: Prepare build tree
+      run: rpmdev-setuptree
+
+    - name: Copy sources
+      run: |
+        tar czvf ~/rpmbuild/SOURCES/hello_world-1.0.tar.gz hello_world-1.0/
+        cp hello_world.spec ~/rpmbuild/SPECS/
+
+    - name: Build RPM
+      run: rpmbuild -bb ~/rpmbuild/SPECS/hello_world.spec
+
+    - name: Verify RPM
+      run: rpm -qp ~/rpmbuild/RPMS/noarch/hello_world-1.0-1.noarch.rpm --info
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build Docker image
+      run: docker build -t hello_world:latest .
+
+    - name: Test Docker image
+      run: docker run --rm hello_world:latest
+
+    - name: Push to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - run: |
+        docker tag hello_world:latest ghcr.io/${{ github.repository }}/hello_world:latest
+        docker push ghcr.io/${{ github.repository }}/hello_world:latest
