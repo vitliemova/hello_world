@@ -3,16 +3,22 @@
   tasks:
     - name: Copy RPM package
       copy:
-        src: ~/rpmbuild/RPMS/noarch/hello_world-2.0-1.noarch.rpm
+        src: ./hello_world-2.0-1.noarch.rpm
         dest: /tmp/hello_world.rpm
 
     - name: Install hello_world RPM with zypper
-      command: zypper --non-interactive install /tmp/hello_world.rpm
+      zypper:
+        name: /tmp/hello_world.rpm
+        state: present
 
     - name: Run hello_world command
       command: /usr/local/bin/hello_world
       register: hello_output
 
-    - name: Debug full result
+    - name: Show stdout
       debug:
-        var: hello_output
+        var: hello_output.stdout
+
+    - name: Show stderr
+      debug:
+        var: hello_output.stderr
