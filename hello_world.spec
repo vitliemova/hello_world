@@ -27,4 +27,4 @@ install -m 0755 hello.py %{buildroot}/usr/local/bin/hello_world
 
 %changelog
 * Mon Dec 08 2025 Desislava <desi@example.com> - 2.0-1
-- Initial RPM build
+- Initial RPM build 2.0.1
