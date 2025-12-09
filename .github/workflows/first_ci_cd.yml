@@ -47,7 +47,7 @@ jobs:
 
           #  Стъпка 4: Качване на RPM артефакт
     - name: Upload RPM artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: hello_world_rpm
         path: ~/rpmbuild/RPMS/noarch/hello_world-2.0-1.noarch.rpm
@@ -84,7 +84,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Download RPM artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: hello_world_rpm
 
