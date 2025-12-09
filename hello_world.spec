@@ -1,6 +1,6 @@
 Name:           hello_world
 Version:        2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Simple Python Hello World program
 
 License:        MIT
